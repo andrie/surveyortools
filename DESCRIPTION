@@ -1,0 +1,18 @@
+Package: surveyortools
+Imports:
+Maintainer: Andrie de Vries <apdevries@gmail.com>
+License: GPL (>=2)
+Title: Additional tools for working with surveyor objects
+LazyData: true
+LazyLoad: true
+Author: Andrie de Vries <apdevries@gmail.com>
+Description: Additional tools for working with surveyor objects.  This
+    includes tools for cleaning data, manipulating survey data (e.g.
+    merge) and fixing encoding problems.
+Author@R: person("Andrie", "de Vries", email="apdevries@gmail.com")
+Version: 0.0-01
+URL:
+Date: 2011-06-18
+Depends: plyr
+Suggests: surveyor
+Collate: 'cleandata.R' 'encoding.R' 'tools.R'
