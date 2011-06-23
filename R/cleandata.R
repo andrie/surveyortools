@@ -1,4 +1,4 @@
-# TODO: Add comment
+# Functions to perform data cleanup
 # 
 # Author: Andrie
 ###############################################################################
