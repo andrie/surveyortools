@@ -34,12 +34,16 @@ has_dk <- function(x, dk="Don't Know"){
 #' @keywords "clean data"
 remove_dk <- function(x, dk="Don't Know"){
 	if (has_dk(x, dk)){
-		l <- levels(x)
-		l[which(levels(x) %in% dk)] <- NA
-		x <- factor(x, levels=l)		
-	} else {
-		x
-	}
+    if(is.factor(x)){
+  		l <- levels(x)
+  		l[which(levels(x) %in% dk)] <- NA
+  		x <- factor(x, levels=l)
+    } else {
+      pattern <- paste("^(", paste(dk, collapse="|"), ").?$", sep="")
+      x <- gsub(pattern, "", x)
+    }
+  }  
+  x
 }
 
 #' Removes "Do not know" and other similar words from factor levels in data frame.
@@ -59,7 +63,7 @@ remove_all_dk <- function(x, dk=NULL){
 	n2 <- sum(as.numeric(lapply(newx, has_dk, dk)))
 	dk <- paste(dk, collapse=", ")
 	message(paste("Removed", n1-n2,"instances of levels that equal [", dk, "]"))
-	ret <- data.frame(newx)
+	ret <- quickdf(newx)
 	attributes(ret) <- attributes(x)
 	ret
 }	
