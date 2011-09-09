@@ -11,7 +11,7 @@
 #' @export 
 #' @keywords encoding
 encToInt <- function(x, encoding=localeToCharset()){
-	utf8ToInt(iconv(x, encoding, "UTF-8"))
+	utf8ToInt(iconv(x, from=encoding, to="UTF-8"))
 }
 
 #' Converts an integer vector to a character vector.
@@ -27,7 +27,7 @@ encToInt <- function(x, encoding=localeToCharset()){
 #' @export 
 #' @keywords encoding
 intToEnc <- function(x, encoding=localeToCharset()){
-	iconv(intToUtf8(x), "utf-8",  encoding)
+	iconv(intToUtf8(x), from="UTF-8", to=encoding)
 }
 
 #' Fix common encoding problems when working with web imported data.

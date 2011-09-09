@@ -123,7 +123,7 @@ leveltest_R <- function(x){
 
 #' Fix level formatting of all question with Yes/No type answers.
 #' 
-#' @param dat Surveyor data object
+#' @param dat surveydata object
 #' @export
 #' @keywords "clean data"
 fix_levels_01_R <- function(dat){
@@ -137,7 +137,7 @@ fix_levels_01_R <- function(dat){
       }
   )
   ret <- plyr::quickdf(ret)
-  attributes(ret)$variable.labels <- varlabels(dat)
+  varlabels(ret) <- varlabels(dat)
   ret
 }
 
