@@ -65,6 +65,7 @@ remove_all_dk <- function(x, dk=NULL){
 	message(paste("Removed", n1-n2,"instances of levels that equal [", dk, "]"))
 	ret <- quickdf(newx)
 	attributes(ret) <- attributes(x)
+  class(ret) <- class(x)
 	ret
 }	
 
@@ -127,6 +128,7 @@ leveltest_R <- function(x){
 #' @export
 #' @keywords "clean data"
 fix_levels_01_R <- function(dat){
+  stopifnot(is.surveydata(dat))
   ret <- lapply(dat, function(x){
         if(leveltest_R(x)){
           levels(x) <- c("Yes", "No")
@@ -137,7 +139,8 @@ fix_levels_01_R <- function(dat){
       }
   )
   ret <- plyr::quickdf(ret)
+  pattern(ret) <- pattern(dat)
   varlabels(ret) <- varlabels(dat)
-  ret
+  as.surveydata(ret)
 }
 
